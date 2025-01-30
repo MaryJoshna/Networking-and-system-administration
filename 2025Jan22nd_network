@@ -1,9 +1,5 @@
 Creating self signed certificate
 
-
-
-
-
 cscuser@cscuser:~$ openssl genrsa -des3 -out csc405key.key 4096
 Enter PEM pass phrase:
 Verifying - Enter PEM pass phrase:
