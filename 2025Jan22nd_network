@@ -1,0 +1,64 @@
+Creating self signed certificate
+
+
+
+
+
+cscuser@cscuser:~$ openssl genrsa -des3 -out csc405key.key 4096
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+
+cscuser@cscuser:~$ more csc405key.key
+
+
+cscuser@cscuser:~$ openssl req -new -key csc405key.key -out server.csr
+
+Enter pass phrase for csc405key.key:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:LK
+State or Province Name (full name) [Some-State]:Northen
+Locality Name (eg, city) []:Jaffna
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Jaffna
+Organizational Unit Name (eg, section) []:Department of Computer Science
+Common Name (e.g. server FQDN or YOUR name) []:www.joshna.com.         
+Email Address []:tomandjerryfriends31@gmail.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
+cscuser@cscuser:~$ more server.csr
+
+cscuser@cscuser:~$ 
+
+cscuser@cscuser:~$ mv server.csr csc405.key.csr
+
+cscuser@cscuser:~$ openssl x509 -req -days 30 -in csc405key.csr -signkey csc405key.key -out csc405key.crt
+
+Enter pass phrase for csc405key.key:
+Can't open "csc405key.csr" for reading, No such file or directory
+40679F57CD7F0000:error:80000002:system library:BIO_new_file:No such file or directory:../crypto/bio/bss_file.c:67:calling fopen(csc405key.csr, r)
+40679F57CD7F0000:error:10000080:BIO routines:BIO_new_file:no such file:../crypto/bio/bss_file.c:75:
+Unable to load certificate request input
+cscuser@cscuser:~$ openssl x509 -req -days 30 -in csc405.key.csr -signkey csc405key.key -out csc405key.crt
+Enter pass phrase for csc405key.key:
+Certificate request self-signature ok
+subject=C = LK, ST = Northen, L = Jaffna, O = University of Jaffna, OU = Department of Computer Science, CN = www.joshna.com., emailAddress = tomandjerryfriends31@gmail.com
+cscuser@cscuser:~$ openssl rsa -in csc405key.key -out csc405key.insecure
+Enter pass phrase for csc405key.key:
+writing RSA key
+cscuser@cscuser:~$ more csc405key.key
+
+cscuser@cscuser:~$ 
+cscuser@cscuser:~$ 
+cscuser@cscuser:~$ 
+cscuser@cscuser:~$ more csc405key.insecure
+
+
